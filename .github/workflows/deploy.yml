@@ -17,21 +17,43 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # Create the file directly on the VM
-            sudo bash -c 'cat <<EOF > /var/www/html/index.html
+            # 1. Generate the HTML directly into the web root
+            cat << 'EOF' > /var/www/html/index.html
             <!DOCTYPE html>
-            <html>
+            <html lang="en">
             <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>DevOps Kampala</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { background-color: #f4f7f6; }
+                    .main-card { 
+                        margin-top: 100px; 
+                        border-top: 5px solid #007bff;
+                    }
+                </style>
             </head>
-            <body class="bg-light text-center" style="padding-top: 100px;">
-                <div class="container bg-white p-5 shadow rounded">
-                    <h1 class="display-4 text-primary">🇺🇬 DevOps Community Kampala</h1>
-                    <p class="lead">Live Deployment via GitHub Actions</p>
-                    <div class="alert alert-info">Last Updated: $(date)</div>
+            <body class="text-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="main-card bg-white p-5 shadow-lg rounded">
+                                <h1 class="display-4 fw-bold text-dark">🇺🇬 DevOps Community Kampala</h1>
+                                <hr>
+                                <p class="lead text-secondary">Automated Linux Deployment via GitHub Actions</p>
+                                <div class="alert alert-success mt-4">
+                                    <strong>Status:</strong> Live & Active
+                                </div>
+                                <p class="text-muted small">System Updated: $(date)</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </body>
             </html>
-            EOF'
-            sudo systemctl reload nginx
+            EOF
+
+            # 2. Optional: Reload Nginx (Most changes reflect without this)
+            # If you did the visudo fix, uncomment the line below:
+            # sudo systemctl reload nginx
