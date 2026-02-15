@@ -45,6 +45,9 @@ jobs:
                                 <div class="alert alert-success mt-4">
                                     <strong>Status:</strong> Live & Active
                                 </div>
+                                <div class="alert alert-success mt-4">
+                                    <strong>Status:</strong> By: Kazooba Lawrence B.
+                                </div>
                                 <p class="text-muted small">System Updated: $(date)</p>
                             </div>
                         </div>
