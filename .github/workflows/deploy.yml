@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # 1. Generate the HTML directly into the web root
-            cat << 'EOF' > /var/www/html/index.html
+            cat << EOF > /var/www/html/index.html
             <!DOCTYPE html>
             <html lang="en">
             <head>
